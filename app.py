@@ -1,8 +1,8 @@
 from fastapi import FastAPI, Depends, HTTPException
 from sqlalchemy.orm import Session
 from sqlalchemy import func
-from . import schemas, models
-from .database import get_db, engine
+import models, schemas
+from database import get_db, engine
 
 app = FastAPI(title="Balance Service", version="1.0.0")
 
