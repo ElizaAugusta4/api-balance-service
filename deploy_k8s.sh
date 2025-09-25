@@ -55,14 +55,3 @@ for DEPLOY in balance-service; do
   echo \"----> Validando $DEPLOY\"
   kubectl rollout status deployment/$DEPLOY --timeout=120s
 done
-
-
-echo "===> Aguardando todos os pods ficarem prontos..."
-kubectl wait --for=condition=Ready pod --all --timeout=120s
-
-echo "===> Fazendo health check dos serviços..."
-for SVC in balance-service; do
-  CLUSTER_IP=$(kubectl get svc $SVC -o jsonpath='{.spec.clusterIP}')
-  PORT=$(kubectl get svc $SVC -o jsonpath='{.spec.ports[0].port}')
-  echo "----> $SVC acessível em $CLUSTER_IP:$PORT (dentro do cluster)"
-done
