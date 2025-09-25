@@ -47,6 +47,7 @@ jobs:
   deploy-k8s:
     runs-on: ubuntu-latest
     needs: build-and-push
+    environment: K8S-SECRETS
     steps:
       - name: Checkout código
         uses: actions/checkout@v3
@@ -57,5 +58,9 @@ jobs:
           username: ${{ secrets.SERVER_USER }}
           key: ${{ secrets.SSH_PRIVATE_KEY }}
           script: |
+            sudo yum install -y git
+            rm -rf api-balance-service
+            git clone https://github.com/ElizaAugusta4/api-balance-service.git
+            cd api-balance-service
             chmod +x ./deploy_k8s.sh
             ./deploy_k8s.sh

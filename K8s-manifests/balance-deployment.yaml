@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
         - name: balance-service
-          image: <DOCKER_USERNAME>/balance-service:latest
+          image: elizaaugusta/balance-service:latest
           ports:
             - containerPort: 8000
           env:
