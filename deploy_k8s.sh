@@ -55,3 +55,6 @@ for DEPLOY in balance-service; do
   echo \"----> Validando $DEPLOY\"
   kubectl rollout status deployment/$DEPLOY --timeout=120s
 done
+
+
+echo \"✅ Deploy finalizado com sucesso!\"
