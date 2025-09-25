@@ -15,6 +15,8 @@ if ! command -v kind &> /dev/null; then
   sudo mv ./kind /usr/local/bin/kind
 fi
 
+sudo usermod -aG docker $USER
+
 if ! command -v docker &> /dev/null; then
   echo "Instalando Docker..."
   sudo yum install -y docker
@@ -27,7 +29,6 @@ if ! getent group docker > /dev/null; then
   sudo groupadd docker
 fi
 
-sudo usermod -aG docker $USER
 
 echo "===> Verificando se o cluster local Kind já existe..."
 
